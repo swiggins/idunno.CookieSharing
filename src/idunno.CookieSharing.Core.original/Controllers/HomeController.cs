@@ -1,20 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System;
-using System.Linq;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http.Authentication;
 
 namespace idunno.CookieSharing.Core.Controllers
 {
     public class HomeController : Controller
     {
         public IActionResult Index()
-        {                        
+        {
             return View();
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -32,9 +32,8 @@ namespace idunno.CookieSharing.Core.Controllers
                     ClaimTypes.Role,
                     "Cookie");
                 var principal = new ClaimsPrincipal(identity);
-                
-                
-                await HttpContext.SignInAsync("CustomCookie", principal,
+
+                await HttpContext.Authentication.SignInAsync("Cookie", principal,
                     new AuthenticationProperties
                     {
                         ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
@@ -46,7 +45,6 @@ namespace idunno.CookieSharing.Core.Controllers
             }
             else
             {
-                //TODO remove
                 return View("Index", model);
             }
         }
@@ -55,7 +53,7 @@ namespace idunno.CookieSharing.Core.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync("CustomCookie");
+            await HttpContext.Authentication.SignOutAsync("Cookie");
             return RedirectToAction("Index");
         }
     }

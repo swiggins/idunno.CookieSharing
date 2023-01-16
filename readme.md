@@ -1,3 +1,5 @@
+# ORIGINAL https://github.com/blowdart/idunno.CookieSharing.git
+
 # Sharing Authentication Cookies between ASP.NET 4.5 and .NET Core
 
 *This document is meant as a work in progress from which to update the official documentation. If anything is unclear, or doesn't work, please open an issue.*

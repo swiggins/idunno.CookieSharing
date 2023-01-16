@@ -1,8 +1,5 @@
-﻿@using idunno.CookieSharing.Core.Controllers
-@model LoginViewModel
-@{
-    ViewData["Title"] = "Cookie Sharing between ASP.NET Core and ASP.NET 4.5";
-}
+﻿@model LoginViewModel
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,12 +48,12 @@
             width: 100%;
         }
 
-            table.cookie {
-                table-layout: fixed;
-            }
+        table.cookie {
+            table-layout:fixed;
+        }
 
         th, td {
-            font-size: 16px;
+            font-size: 26px;
             text-align: left;
             word-wrap: break-word;
             vertical-align: top;
@@ -65,8 +62,8 @@
 </head>
 <body>
     <div id="content">
-        <h3>Cookie Sharing between ASP.NET Core and ASP.NET 4.5</h3>
-        <h1>This is .NET Core</h1>
+        <h1>Cookie Sharing between ASP.NET Core and ASP.NET 4.5</h1>
+        <h2>This is .NET Core</h2>
         <hr />
         @if (Context.Request.Cookies.Count() > 0)
         {
@@ -107,7 +104,7 @@
                 </thead>
                 <tbody>
                     @foreach (var c in User.Claims)
-                    {
+                {
                         <tr>
                             <td>@c.Type</td>
                             <td>@c.Value</td>
